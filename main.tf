@@ -1,3 +1,13 @@
+terraform {
+  required_version = "1.11"
+    backend "s3" {
+    bucket       = "venky-terraform-state-2026-unique"
+    key          = "venky.tfstate"
+    region       = "ap-south-1"
+    use_lockfile = true
+  }
+}
+
 provider "aws" {
   region = var.region
 }
