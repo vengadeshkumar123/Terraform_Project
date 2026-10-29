@@ -1,5 +1,5 @@
 terraform {
-  required_version = "1.6.0"
+  required_version = ">= 1.11.0, < 2.0.0"
     backend "s3" {
     bucket       = "venky-terraform-state-2026-unique"
     key          = "venky.tfstate"
