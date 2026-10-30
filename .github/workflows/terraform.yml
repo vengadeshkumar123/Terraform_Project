@@ -8,6 +8,7 @@ on:
 permissions:
   id-token: write
   contents: read
+  issues: write
 
 jobs:
   terraform:
@@ -33,6 +34,15 @@ jobs:
 
       - name: Terraform Plan
         run: terraform plan
+
+      - name: Manual Approval
+        uses: trstringer/manual-approval@v1
+        with:
+          secret: ${{ github.token }}
+          approvers: vengadeshkumar123
+          minimum-approvals: 1
+          issue-title: "Approve Terraform Apply"
+          issue-body: "Review the Terraform plan in GitHub Actions logs before approving."
 
       - name: Terraform Apply
         run: terraform apply -auto-approve
